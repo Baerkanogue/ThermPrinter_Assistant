@@ -43,7 +43,8 @@ class GuiHandler:
         except Exception as error:
             print(f"config.cfg error: {error}")
 
-        self.default_image.path = join("samples", "sample.jpg")
+        sample_path: hp.Path = hp.resource_path("samples/sample.jpg")
+        self.default_image.path = str(sample_path)
         self.default_image.img = hp.Image.open(self.default_image.path)
         self.default_image.origin_img = self.default_image.img
 

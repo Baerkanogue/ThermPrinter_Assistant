@@ -1,6 +1,7 @@
 from PIL import Image, ImageEnhance
 from pathlib import Path
 from configparser import ConfigParser
+import sys
 
 
 PRINTER_DPI: int = 203
@@ -97,3 +98,9 @@ def convert_image_width(
         new_width: int = int(new_height / aspect_ratio)
 
     return (new_width, new_height)
+
+
+def resource_path(relative: str) -> Path:
+    if hasattr(sys, "_MEIPASS"):
+        return Path(sys._MEIPASS) / relative  # type: ignore
+    return Path(relative)
