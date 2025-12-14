@@ -1,3 +1,6 @@
-output
+output/
 __pycache__
 .tmp*
+*.spec
+build/
+dist/

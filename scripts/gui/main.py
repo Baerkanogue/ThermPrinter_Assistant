@@ -14,7 +14,7 @@ class GuiHandler:
         self.status_label: qtui.QtWidgets.QLabel
         self.working_img: hp.ImageData = hp.ImageData()
         self.output_dir: str = "."
-        self.config: hp.Config
+        self.config: hp.Config | None = None
 
         self.default_image: hp.ImageData = hp.ImageData()
 
@@ -38,13 +38,10 @@ class GuiHandler:
 
         try:
             self.config = hp.parse_cfg()
-        except Exception as error:
-            self.status_label.setText(f"config.cfg error: {error}")
-
-        if self.config:
-            print(self.config.dpi, self.config.width)
             self.ui.dpi_spin_box.setValue(self.config.dpi)
             self.ui.width_spin_box.setValue(self.config.width)
+        except Exception as error:
+            print(f"config.cfg error: {error}")
 
         self.default_image.path = join("samples", "sample.jpg")
         self.default_image.img = hp.Image.open(self.default_image.path)
