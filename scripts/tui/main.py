@@ -34,7 +34,7 @@ def main_loop(img: pt.ImageData) -> None:
 
         do_again = pt.ask_quit()
 
-    print(f"{pt.Fore.YELLOW}Fermeture...{pt.Fore.RESET}")
+    print(f"{pt.Fore.YELLOW}Closing...{pt.Fore.RESET}")
 
 
 if __name__ == "__main__":

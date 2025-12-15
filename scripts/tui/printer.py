@@ -22,12 +22,12 @@ def get_image_path() -> str:
         try:
             path = sys.argv[1]
         except Exception as error:
-            print(f"{Fore.RED}Argument incorrect.\nErreur: {error}{Fore.RESET}")
+            print(f"{Fore.RED}Invalid arguments.\nError: {error}{Fore.RESET}")
 
     while not path:
-        path = input(f"{Fore.YELLOW}Chemin de l'image à convertir:{Fore.RESET} ")
+        path = input(f"{Fore.YELLOW}Image to convert path:{Fore.RESET} ")
     else:
-        print(f"{Fore.GREEN}Fichier:{Fore.RESET} {path}")
+        print(f"{Fore.GREEN}File:{Fore.RESET} {path}")
 
     return path
 
@@ -37,7 +37,7 @@ def open_image(path: str) -> Image.Image | None:
     try:
         img = Image.open(path)
     except Exception as error:
-        print(f"{Fore.RED}Chemin de l'image incorrect.\nError: {error}{Fore.RESET}")
+        print(f"{Fore.RED}Invalid path.\nError: {error}{Fore.RESET}")
         return
 
     return img
@@ -49,14 +49,12 @@ def get_paper_width() -> float:
     while not paper_width:
         try:
             paper_width = float(
-                input(
-                    f"{Fore.YELLOW}Largeur en pouces du papier d'imprimante:{Fore.RESET} "
-                )
+                input(f"{Fore.YELLOW}Print paper width in inches:{Fore.RESET} ")
             )
         except Exception as error:
-            print(f"{Fore.RED}Taille du papier incorrecte.\nError: {error}{Fore.RESET}")
+            print(f"{Fore.RED}Invalid paper width.\nError: {error}{Fore.RESET}")
     else:
-        print(f"{Fore.GREEN}Taille papier reconnue: {paper_width}{Fore.GREEN}")
+        print(f"{Fore.GREEN}Paper width: {paper_width}{Fore.GREEN}")
 
     return paper_width
 
@@ -72,21 +70,21 @@ def img_convert_rgb(img: Image.Image) -> Image.Image:
 def is_landscape_select() -> bool:
     landscape_select: str = ""
     landscape_message: str = (
-        f"{Fore.YELLOW}Préparer une image pour une impression P[O]RTRAIT ou P[A]YSAGE ?  O/A: "
+        f"{Fore.YELLOW}Prepare an image for [L]andscape or [P]ortrait: "
     )
-    while landscape_select != "o" and landscape_select != "a":
+    while landscape_select != "p" and landscape_select != "l":
         landscape_select = input(landscape_message).lower()
 
-    return True if landscape_select == "a" else False
+    return True if landscape_select == "l" else False
 
 
 def ask_brightness_level() -> float:
     brightness: float = 0.0
     while not brightness:
         try:
-            brightness = float(input(f"{Fore.YELLOW}% de luminosité:{Fore.RESET} "))
+            brightness = float(input(f"{Fore.YELLOW}% brightness:{Fore.RESET} "))
         except Exception as error:
-            print(f"{Fore.RED}Luminosité incorrecte.\nError: {error}{Fore.RESET}")
+            print(f"{Fore.RED}Invalid brightness.\nError: {error}{Fore.RESET}")
     return brightness
 
 
@@ -94,7 +92,7 @@ def dither(img: Image.Image) -> Image.Image:
     is_dithering_str: str = ""
     while is_dithering_str != "y" and is_dithering_str != "n":
         is_dithering_str = input(
-            f"{Fore.YELLOW}Appliquer dither ? Y/N:{Fore.RESET} "
+            f"{Fore.YELLOW}Apply dithering ? Y/N:{Fore.RESET} "
         ).lower()
     if is_dithering_str == "y":
         return img.convert(mode="1", dither=Image.Dither.FLOYDSTEINBERG)
@@ -113,13 +111,13 @@ def save_image(img: Image.Image, path: str, save_suffix: int) -> None:
 
     img.show(output_name)
     img.save(output_full)
-    print(f"{Fore.GREEN}Image sauvergardé -> {output_name}{Fore.RESET}")
+    print(f"{Fore.GREEN}Image saved -> {output_name}{Fore.RESET}")
 
 
 def ask_quit() -> bool:
     reset_str: str = ""
     while reset_str != "y" and reset_str != "n":
-        reset_str = input(f"{Fore.YELLOW}Recommencer ? Y/N:{Fore.RESET} ").lower()
+        reset_str = input(f"{Fore.YELLOW}Again ? Y/N:{Fore.RESET} ").lower()
     return True if reset_str == "y" else False
 
 
@@ -136,7 +134,7 @@ def change_luminosity(
             pixel: float | tuple[int, ...] | None = image.getpixel((x, y))
 
             if not isinstance(pixel, tuple):
-                print(f"{Fore.RED}Erreur format pixels.{Fore.RESET}")
+                print(f"{Fore.RED}Wrong pixel format.{Fore.RESET}")
                 return image
 
             new_color: tuple[int, ...] = tuple(
@@ -171,16 +169,16 @@ def parse_cfg_for_width(parser: cfgp.ConfigParser) -> float:
     try:
         parser.read("config.cfg")
     except Exception as error:
-        print(f"{Fore.RED}config.cfg introuvable.\nErreur: {error}{Fore.RESET}")
+        print(f"{Fore.RED}config.cfg not found.\nError: {error}{Fore.RESET}")
         return res
 
     try:
         res = parser.getfloat("Settings", "PAPER_WIDTH")
     except Exception as error:
-        print(f"{Fore.RED}Erreur lecture config.cfg.\nErreur: {error}{Fore.RESET}")
+        print(f"{Fore.RED}Error while parsing config.cfg: {error}{Fore.RESET}")
 
     return res
 
 
 if __name__ == "__main__":
-    print(f"{Fore.RED}Erreur:\nLe script à exécuter est main.py.")
+    print(f"{Fore.RED}Error:\nPlease run main.py...")
