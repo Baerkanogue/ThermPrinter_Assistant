@@ -32,6 +32,9 @@ ___
 - pillow
 - pyinstaller
 - pyinstaller-hooks-contrib
+- PyQt6
+- PyQt6-Qt6
+- PyQt6_sip
 - setuptools
 
 #### Linux
