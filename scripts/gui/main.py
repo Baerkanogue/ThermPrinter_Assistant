@@ -34,7 +34,7 @@ class GuiHandler:
         self.ui.setupUi(self.window)
 
         self.window.setWindowTitle("ThermPrinter Assistant")
-        win_icon_path: hp.Path = hp.resource_path("icons/printer.ico")
+        win_icon_path: hp.Path = hp.resource_path("icons/printer3d.ico")
         win_icon: uim.QtGui.QIcon = uim.QtGui.QIcon(str(win_icon_path))
         self.window.setWindowIcon(win_icon)
 
