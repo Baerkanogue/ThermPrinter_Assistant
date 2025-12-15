@@ -1,5 +1,5 @@
 import sys
-import qtui
+import qtmain
 import helpers as hp
 from os.path import join
 from os import remove
@@ -7,11 +7,11 @@ from os import remove
 
 class GuiHandler:
     def __init__(self) -> None:
-        self.app: qtui.QtWidgets.QApplication
-        self.window: qtui.QtWidgets.QMainWindow
-        self.ui: qtui.Ui_PrinterGUI
+        self.app: qtmain.QtWidgets.QApplication
+        self.window: qtmain.QtWidgets.QMainWindow
+        self.ui: qtmain.Ui_PrinterGUI
 
-        self.status_label: qtui.QtWidgets.QLabel
+        self.status_label: qtmain.QtWidgets.QLabel
         self.working_img: hp.ImageData = hp.ImageData()
         self.output_dir: str = "."
         self.config: hp.Config | None = None
@@ -26,12 +26,18 @@ class GuiHandler:
         sys.exit(self.app.exec())
 
     def _gui_init(self) -> None:
-        self.app = qtui.QtWidgets.QApplication(sys.argv)
-        self.window = qtui.QtWidgets.QMainWindow()
-        self.ui = qtui.Ui_PrinterGUI()
+        self.app = qtmain.QtWidgets.QApplication(sys.argv)
+        self.window = qtmain.QtWidgets.QMainWindow()
+
+        self.ui = qtmain.Ui_PrinterGUI()
         self.ui.setupUi(self.window)
 
-        self.status_label = qtui.QtWidgets.QLabel(self.window)
+        self.window.setWindowTitle("ThermPrinter Assistant")
+        win_icon_path: hp.Path = hp.resource_path("icons/printer.ico")
+        win_icon: qtmain.QtGui.QIcon = qtmain.QtGui.QIcon(str(win_icon_path))
+        self.window.setWindowIcon(win_icon)
+
+        self.status_label = qtmain.QtWidgets.QLabel(self.window)
         stat = self.window.statusBar()
         if stat:
             stat.addPermanentWidget(self.status_label)
@@ -50,7 +56,7 @@ class GuiHandler:
 
         self.working_img = self.default_image
 
-        self.ui.image_frame.setPixmap(qtui.QtGui.QPixmap(self.working_img.path))
+        self.ui.image_frame.setPixmap(qtmain.QtGui.QPixmap(self.working_img.path))
 
     def _connect(self) -> None:
         self.ui.save_button.pressed.connect(self._on_save_button_pressed)
@@ -68,7 +74,7 @@ class GuiHandler:
             self.working_img.tmp = ".tmp.png"
 
             self.working_img.img.save(self.working_img.tmp)
-            gui.ui.image_frame.setPixmap(qtui.QtGui.QPixmap(self.working_img.tmp))
+            gui.ui.image_frame.setPixmap(qtmain.QtGui.QPixmap(self.working_img.tmp))
 
             try:
                 remove(self.working_img.tmp)
@@ -81,7 +87,7 @@ class GuiHandler:
     def _on_open_button_pressed(self) -> None:
         file_str: str
         try:
-            file_str = qtui.QtWidgets.QFileDialog.getOpenFileName(
+            file_str = qtmain.QtWidgets.QFileDialog.getOpenFileName(
                 self.window,
                 "Select a picture",
                 ".",
@@ -99,7 +105,7 @@ class GuiHandler:
             return
 
         self.ui.file_path_line.setText(file_str)
-        self.ui.image_frame.setPixmap(qtui.QtGui.QPixmap(file_str))
+        self.ui.image_frame.setPixmap(qtmain.QtGui.QPixmap(file_str))
         self.working_img.origin_img = img_open
         self.working_img.img = img_open.copy()
         self.working_img.path = file_str
@@ -107,12 +113,12 @@ class GuiHandler:
     def _on_choose_button_pressed(self) -> None:
         dir_str: str
         try:
-            dir_str = qtui.QtWidgets.QFileDialog.getExistingDirectory(
+            dir_str = qtmain.QtWidgets.QFileDialog.getExistingDirectory(
                 self.window,
                 "Select a directory",
                 ".",
-                qtui.QtWidgets.QFileDialog.Option.ShowDirsOnly
-                | qtui.QtWidgets.QFileDialog.Option.DontResolveSymlinks,
+                qtmain.QtWidgets.QFileDialog.Option.ShowDirsOnly
+                | qtmain.QtWidgets.QFileDialog.Option.DontResolveSymlinks,
             )
         except Exception as error:
             self.status_label.setText(f"Error: {error}")

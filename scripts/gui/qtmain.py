@@ -100,14 +100,20 @@ class Ui_PrinterGUI(object):
     def retranslateUi(self, PrinterGUI):
         _translate = QtCore.QCoreApplication.translate
         PrinterGUI.setWindowTitle(_translate("PrinterGUI", "MainWindow"))
-        self.file_path_line.setPlaceholderText(_translate("PrinterGUI", "Enter file path..."))
+        self.file_path_line.setPlaceholderText(
+            _translate("PrinterGUI", "Enter file path...")
+        )
         self.preview_button.setText(_translate("PrinterGUI", "PREVIEW"))
-        self.output_path_line.setPlaceholderText(_translate("PrinterGUI", "Enter output path..."))
+        self.output_path_line.setPlaceholderText(
+            _translate("PrinterGUI", "Enter output path...")
+        )
         self.brightness_spin_box.setSpecialValueText(_translate("PrinterGUI", "%"))
         self.dither_label.setText(_translate("PrinterGUI", "Dither"))
         self.brightness_label.setText(_translate("PrinterGUI", "% Brightness"))
         self.save_button.setText(_translate("PrinterGUI", "SAVE"))
-        self.output_name_line.setPlaceholderText(_translate("PrinterGUI", "Enter output name..."))
+        self.output_name_line.setPlaceholderText(
+            _translate("PrinterGUI", "Enter output name...")
+        )
         self.dpi_label.setText(_translate("PrinterGUI", "DPI"))
         self.landscape_combo_box.setCurrentText(_translate("PrinterGUI", "landscape"))
         self.landscape_combo_box.setItemText(0, _translate("PrinterGUI", "landscape"))
@@ -119,6 +125,7 @@ class Ui_PrinterGUI(object):
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     PrinterGUI = QtWidgets.QMainWindow()
     ui = Ui_PrinterGUI()

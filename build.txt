@@ -1,0 +1,5 @@
+[LINUX]
+pyinstaller --onefile --add-data "samples\sample.jpg:samples" --add-data "icons/printer.ico:icons" --name "ThermPrinter_Assistant" scripts/gui/main.py
+
+[WINDOWS]
+pyinstaller --onefile --add-data "samples\sample.jpg;samples" --add-data "icons\printer.ico;icons" --name "ThermPrinter_Assistant" scripts\gui\main.py
