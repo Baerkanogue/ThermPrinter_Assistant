@@ -11,9 +11,9 @@ pyinstaller --onefile --name "cm_inch_converter" .\scripts\cm_inch_convert.py
 New-Item -ItemType Directory -Force -Path export | Out-Null
 New-Item -ItemType Directory -Force -Path export/misc | Out-Null
 
-Copy-Item dist/ThermPrinter_Assistant export/ThermPrinter_Assistant -Force
-Copy-Item dist/ThermPrinter_Assistant_TUI export/misc/ThermPrinter_Assistant_TUI -Force
-Copy-Item dist/cm_inch_converter export/misc/cm_inch_converter -Force
+Copy-Item dist/ThermPrinter_Assistant.exe export/ThermPrinter_Assistant.exe -Force
+Copy-Item dist/ThermPrinter_Assistant_TUI.exe export/misc/ThermPrinter_Assistant_TUI.exe -Force
+Copy-Item dist/cm_inch_converter.exe export/misc/cm_inch_converter.exe -Force
 
 Copy-Item config.cfg export/config.cfg -Force
 Copy-Item license.md export/misc/license.md -Force
