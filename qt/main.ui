@@ -45,9 +45,9 @@
    <widget class="QPushButton" name="preview_button">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>20</x>
       <y>490</y>
-      <width>371</width>
+      <width>361</width>
       <height>41</height>
      </rect>
     </property>
@@ -94,7 +94,7 @@
     <property name="geometry">
      <rect>
       <x>393</x>
-      <y>360</y>
+      <y>350</y>
       <width>21</width>
       <height>41</height>
      </rect>
@@ -107,7 +107,7 @@
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>290</y>
+      <y>280</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -135,7 +135,7 @@
     <property name="geometry">
      <rect>
       <x>420</x>
-      <y>360</y>
+      <y>350</y>
       <width>71</width>
       <height>41</height>
      </rect>
@@ -148,7 +148,7 @@
     <property name="geometry">
      <rect>
       <x>470</x>
-      <y>290</y>
+      <y>280</y>
       <width>81</width>
       <height>31</height>
      </rect>
@@ -192,7 +192,7 @@
     <property name="geometry">
      <rect>
       <x>470</x>
-      <y>170</y>
+      <y>160</y>
       <width>81</width>
       <height>31</height>
      </rect>
@@ -205,7 +205,7 @@
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>330</y>
+      <y>320</y>
       <width>151</width>
       <height>31</height>
      </rect>
@@ -257,7 +257,7 @@
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>210</y>
+      <y>200</y>
       <width>71</width>
       <height>32</height>
      </rect>
@@ -273,7 +273,7 @@
     <property name="geometry">
      <rect>
       <x>470</x>
-      <y>210</y>
+      <y>200</y>
       <width>81</width>
       <height>31</height>
      </rect>
@@ -286,7 +286,7 @@
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>170</y>
+      <y>160</y>
       <width>71</width>
       <height>32</height>
      </rect>
@@ -312,7 +312,7 @@
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>250</y>
+      <y>240</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -340,7 +340,7 @@
     <property name="geometry">
      <rect>
       <x>470</x>
-      <y>250</y>
+      <y>240</y>
       <width>81</width>
       <height>31</height>
      </rect>
