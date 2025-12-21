@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>ThermPrinter Assistant</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLineEdit" name="file_path_line">
