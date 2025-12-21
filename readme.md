@@ -13,7 +13,7 @@ To operate correctly, the software requires:
 
 After resizing, the image is processed using:
 - Conversion to 1-bit monochrome (black & white)
-- Brightness adjustment
+- Contrast & brightness adjustment
 - Optional dithering
 
 ### Notes 
