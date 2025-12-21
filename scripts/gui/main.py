@@ -136,6 +136,17 @@ class GuiHandler:
         self.output_dir = dir_str
 
     def _on_save_button_pressed(self) -> None:
+        proc: hp.QueuedProcess | None = self._get_queued_process()
+        if not proc:
+            self.status_label.setText("Error getting process parameters")
+            return
+
+        try:
+            self.working_img.img = hp.process_image(self.working_img.origin_img, proc)
+        except Exception as error:
+            self.status_label.setText(f"Processing error: {error}")
+            return
+
         try:
             file_name: str | None = None
             custom_name: str | None = self.ui.output_name_line.text()
